@@ -12,14 +12,24 @@
 
 <body>
 
-    <form action="post" id="form">
+<?php 
+
+if (isset($_GET['submit'])){
+    $city = $_GET['city'];
+    echo "hello world";
+    echo $city;
+}
+
+?>
+
+    <form action="" id="form">
         <input type="text" name="city" id="city" placeholder="Enter minimum 2 letters">
         <div>
             <select id="display">
 
             </select>
         </div>
-        <input type="submit">
+        <input type="submit" id="submit">
     </form>
 
 
