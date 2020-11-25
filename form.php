@@ -60,14 +60,84 @@
       </div>
     </header>
     <?php 
-
-if (isset($_GET['submit'])){
-  //  $city = $_GET['city'];
-    echo "hello world";
-  //  echo $city;
-}
-
+      /*
+      // $_REQUEST accepts both GET and POST methods
+      if (isset($_REQUEST['submit'])){
+        //  $city = $_GET['city'];
+        //  echo $city;
+          echo "hello world";
+          console.log("hello world");
+          echo htmlentities($_REQUEST['postal_code']);
+          console.log(htmlentities($_REQUEST['postal_code']));
+      }
+      */
     ?>
+
+    <?php 
+      // Check For Submit
+      if(filter_has_var(INPUT_POST, 'submit')){
+        // Check Required Fields (handled by browser (I guess ?) via html attribute "required". Is it enough ?)
+
+        // Get Form Data + sanitize inputs
+          $postal_code = htmlspecialchars($_POST['postal_code']);
+          $number_of_rooms = htmlspecialchars($_POST['number_of_rooms']);
+          $house_area = htmlspecialchars($_POST['house_area']);
+          $fully_equipped_kitchen = htmlspecialchars($_POST['fully_equipped_kitchen']);
+          $open_fire = htmlspecialchars($_POST['open_fire']);
+          $terrace = htmlspecialchars($_POST['terrace']);
+          $garden = htmlspecialchars($_POST['garden']);
+          $number_of_facades = htmlspecialchars($_POST['number_of_facades']);
+          $swimming_pool = htmlspecialchars($_POST['swimming_pool']);
+          $state_of_the_building = htmlspecialchars($_POST['state_of_the_building']);
+          $construction_year = htmlspecialchars($_POST['construction_year']);
+          $surface_of_the_land = htmlspecialchars($_POST['surface_of_the_land']);
+          // Set Array
+          $safe_input = [
+            "postal code" => $postal_code,
+            "number of rooms" => $number_of_rooms,
+            "house area" => $house_area,
+            "fully equipped kitchen" => $fully_equipped_kitchen,
+            "open fire" => $open_fire,
+            "terrace" => $terrace,
+            "garden" => $garden,
+            "number of facades" => $number_of_facades,
+            "swimming pool" => $swimming_pool,
+            "state of the building" => $state_of_the_building,
+            "construction year" => $construction_year,
+            "surface of the land" => $surface_of_the_land
+          ];
+        
+        // Validate inputs
+        $filters = [
+          "postal code" => FILTER_VALIDATE_INT,
+          "number of rooms" => FILTER_VALIDATE_INT,
+          "house area" => FILTER_VALIDATE_INT,
+          "fully equipped kitchen" => FILTER_VALIDATE_BOOLEAN,
+          "open fire" => FILTER_VALIDATE_BOOLEAN,
+          "terrace" => FILTER_VALIDATE_BOOLEAN,
+          "garden" => FILTER_VALIDATE_BOOLEAN,
+          "number of facades" => FILTER_VALIDATE_INT,
+          "swimming pool" => FILTER_VALIDATE_BOOLEAN,
+          "state of the building" => FILTER_VALIDATE_STRING,
+          "construction year" => FILTER_VALIDATE_INT,
+          "surface of the land" => FILTER_VALIDATE_INT
+      ];
+      $valid_input = filter_var_array($safe_input, $filters);
+      
+      // Convert to JSON 
+      $json_input = json_encode($valid_input);
+      // Send Form Data to API
+    ?>
+    <script>
+      fetch('https://immoeliza-real-estate.herokuapp.com/predict_house_tojson2', {
+        method : 'post',
+        body: JSON.stringify($json_input)
+    })
+      .then((res) => res.json()) // returns res.json
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error))
+    </script>
+
     <main class="container">
       <div class="row">
         <div class="col">
@@ -76,8 +146,9 @@ if (isset($_GET['submit'])){
               <h3>Form</h3>
             </div>
             <div class="card-body">
-              <p>For apartments, ignore "surface of the land"</p>
-              <form action="form.php" method="post">
+              <p>For apartments, ignore "surface of the land" TODO : toggle attribute "required" on input "land surface" accordingly</p>
+              <!-- Form action depends on the category (house/aptment) since the url for the request is different, right ? -->
+              <form action="URL_WHERE_THE_FORM_IS_SENT" method="post">
                 <input type="text" name="postal_code" placeholder="postal_code" required="required" />
                 <input type="int" name="number_of_rooms" placeholder="number_of_rooms" required="required" />
                 <input type="int" name="house_area" placeholder="house_area in m2" required="required" />
@@ -85,12 +156,12 @@ if (isset($_GET['submit'])){
                 <input type="text" name="open_fire" placeholder="open_fire" required="required" />
                 <input type="text" name="terrace" placeholder="terrace" required="required" />
                 <input type="text" name="garden" placeholder="garden" required="required" />
-                <input type="int" name="surface_of_the_land" placeholder="surface_of_the_land in m2" required="required" />
                 <input type="int" name="number_of_facades" placeholder="number_of_facades" required="required" />
                 <input type="text" name="swimming_pool" placeholder="swimming_pool" required="required" />
                 <input type="text" name="state_of_the_building" placeholder="state_of_the_building" required="required" />
                 <input type="int" name="construction_year" placeholder="construction_year" required="required" />
-                <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+                <input type="int" name="surface_of_the_land" placeholder="surface_of_the_land in m2" required="required" />
+                <button type="submit" name="submit" class="btn btn-primary btn-block btn-large">Predict</button>
               </form>
             </div>
           </div>
@@ -114,4 +185,3 @@ if (isset($_GET['submit'])){
 
   </body>
 </html>
-
