@@ -111,16 +111,16 @@
         
         // Validate inputs
         $filters = [
-          //"postal_code" => FILTER_VALIDATE_INT,
+          "postal_code" => FILTER_VALIDATE_INT,
           "number_of_rooms" => FILTER_VALIDATE_INT,
           "house_area" => FILTER_VALIDATE_INT,
-          //"fully_equipped_kitchen" => FILTER_VALIDATE_BOOLEAN,
-          //"open_fire" => FILTER_VALIDATE_BOOLEAN,
-          //"terrace" => FILTER_VALIDATE_BOOLEAN,
-          //"garden" => FILTER_VALIDATE_BOOLEAN,
+          "fully_equipped_kitchen" => "",
+          "open_fire" => "",
+          "terrace" => "",
+          "garden" => "",
           "number_of_facades" => FILTER_VALIDATE_INT,
-          //"swimming_pool" => FILTER_VALIDATE_BOOLEAN,
-          "state_of_the_building" => FILTER_VALIDATE_STRING,
+          "swimming_pool" => "",
+          "state_of_the_building" => "",
           "construction_year" => FILTER_VALIDATE_INT,
           "surface_of_the_land" => FILTER_VALIDATE_INT
       ];
@@ -176,20 +176,20 @@
               <h3>Form</h3>
             </div>
             <div class="card-body">
-              <p>For apartments, ignore "surface of the land" TODO : toggle attribute "required" on input "land surface" accordingly</p>
+              <p>For apartments, ignore "surface of the land" TODO : toggle attribute "required" on input "land surface" accordingly ; create SELECT for "state of the building"</p>
               <!-- Form action depends on the category (house/aptment) since the url for the request is different, right ? -->
               <form action="form.php" method="post">
                 <div class="input-group">
-                  <label for="postal_code">Postal code</label>
-                  <input type="text" name="postal_code" placeholder="postal_code" required="required" />
+                  <label for="postal_code">Postal code</label><br>
+                  <input class="form-control" type="number" name="postal_code" placeholder="postal_code" required="required" />
                 </div>
                 <div class="input-group">
-                  <label for="number_of_rooms">Rooms</label>
-                  <input type="int" name="number_of_rooms" placeholder="number_of_rooms" required="required" />
+                  <label for="number_of_rooms">Rooms</label><br>
+                  <input class="form-control" type="number" name="number_of_rooms" placeholder="number_of_rooms" required="required" />
                 </div>
                 <div class="input-group"> 
-                  <label for="house_area">Habitable area (m²)</label> 
-                  <input type="int" name="house_area" placeholder="house_area in m2" required="required" />
+                  <label for="house_area">Habitable area (m²)</label><br>
+                  <input class="form-control" type="number" name="house_area" placeholder="house_area in m2" required="required" />
                 </div>
                 <div class="input-group">  
                   <label for="fully_equipped_kitchen">Fully equipped kitchen</label><br>
@@ -220,8 +220,8 @@
                   <label for="no">No</label>
                 </div>
                 <div class="input-group">  
-                  <label for="number_of_facades">Facades</label> 
-                  <input type="int" name="number_of_facades" placeholder="number_of_facades" required="required" />
+                  <label for="number_of_facades">Facades</label><br> 
+                  <input class="form-control" type="number" name="number_of_facades" placeholder="number_of_facades" min=1 max=4 required="required" />
                 </div>
                 <div class="input-group">  
                   <label for="swimming_pool">Swimming pool</label><br>
@@ -231,16 +231,16 @@
                   <label for="no">No</label>
                 </div>
                 <div class="input-group">  
-                  <label for="state_of_the_building">State of the building</label> 
-                  <input type="text" name="state_of_the_building" placeholder="state_of_the_building" required="required" />
+                  <label for="state_of_the_building">State of the building</label><br> 
+                  <input class="form-control" type="text" name="state_of_the_building" placeholder="state_of_the_building" required="required" />
                 </div>
                 <div class="input-group"> 
-                  <label for="construction_year">Year of construction</label> 
-                  <input type="int" name="construction_year" placeholder="construction_year" required="required" />
+                  <label for="construction_year">Year of construction</label><br> 
+                  <input class="form-control" type="number" name="construction_year" placeholder="construction_year" required="required" />
                 </div>
                 <div class="input-group"> 
-                  <label for="surface_of_the_land">Land surface</label>  
-                  <input type="int" name="surface_of_the_land" placeholder="surface_of_the_land in m2" required="required" />
+                  <label for="surface_of_the_land">Land surface</label><br>  
+                  <input class="form-control" type="number" name="surface_of_the_land" placeholder="surface_of_the_land in m2" required="required" />
                 </div>
                 <button type="submit" name="submit" class="btn btn-primary btn-block btn-large">Predict</button>
               </form>
