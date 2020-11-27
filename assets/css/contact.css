@@ -1,0 +1,67 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-size: 17px;
+}
+
+body{
+  font-family: 'Castoro', serif;
+}
+
+.contact-form{
+  margin-top: 30px;
+  text-align: center;
+}
+
+#nav-bar{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-item li a {
+  float: right;
+  text-align: right;
+}
+
+.navbar-nav li{
+  padding: 0 10px;
+}
+
+
+.navbar-light .navbar-brand {
+  display: flex;
+    position: relative;
+    white-space: nowrap;
+    padding-right: 10px;
+}
+.navbar-brand 
+.btn{
+  text-align: center;
+}
+
+.container-form{
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #eaeced;
+  
+
+}
+
+.contact-form{
+
+  padding-top: 200px;
+  padding-bottom: 200px;
+  
+}
+
+.contact-form{
+  padding: 15px;
+
+}
+
+h2{
+  padding-bottom: 20px;
+  font-family: 'Castoro', serif;
+}

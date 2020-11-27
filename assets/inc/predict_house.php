@@ -49,6 +49,7 @@
       ];
       $valid_input = filter_var_array($safe_input, $filters);
     }
+    if(isset($valid_input)){
       // Convert to JSON 
       //$json_input = json_encode($valid_input);
 
@@ -82,11 +83,11 @@
       $result = curl_exec($ch);
 
       $prediction = json_decode($result, true);
-
-      echo "Prediction = ";
-      echo var_dump($prediction);
+      
+      //echo "Prediction = ";
+      //echo var_dump($prediction);
 
       // Close cURL resource
       curl_close($ch);
-
+    }
     ?>

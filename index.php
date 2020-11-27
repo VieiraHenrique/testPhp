@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css">
     <title>ImmoEliza | homepage</title>
   </head>
   
@@ -37,7 +38,23 @@
           <a href="form.php" class="btn btn-dark">Link to our form</a>
         </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <h2>Check out the average price of a m2 in Belgium with this awesome map !</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <iframe id="inlineFrame"
+            title="Price prediction"
+            width="625"
+            height="500"
+            src="https://immoeliza-real-estate.herokuapp.com/map_average_apartment_price">
+          </iframe>
+        </div>
+      </div>
     </main>
+
 
     <?php include 'assets/inc/footer.php'; ?>
 

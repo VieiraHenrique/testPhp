@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+
     <title>ImmoEliza | form</title>
   </head>
 
@@ -14,11 +15,17 @@
     <?php 
 
     //If button "house"
-    include 'assets/inc/predict_house.php';
-    
+    //if(isset($_POST['house'])) {
+      include 'assets/inc/predict_house.php';
+    //  unset($_POST['house']);
+    //}
+    /*
     //If button "apartment"
-    //include 'assets/inc/predict_apartment.php'; 
-    
+    if(isset($_POST['apartment'])) {
+      include 'assets/inc/predict_apartment.php';
+      unset($_POST['apartment']);
+    }
+    */
     ?>
 
     <main class="container">
@@ -29,10 +36,10 @@
       </div>
       <div class="row">
         <div class="col-auto">
-          <button class="btn btn-primary">House</button>
+          <button class="btn btn-primary" type="submit" name="house">House</button>
         </div>
         <div class="col-auto">
-          <button class="btn btn-primary">Apartment</button>
+          <button class="btn btn-primary" type="submit" name="apartment">Apartment</button>
         </div>
       </div>
       <div class="row">
@@ -117,7 +124,7 @@
               <div class="col-sm form-group">
                 <button type="submit" name="submit" class="btn btn-primary btn-block btn-large">Predict</button>
                 <div>
-                  <?php echo print_r($prediction); ?>
+                  <?php if(isset($result)){echo print_r($prediction);} ?>
                 </div>
               </div>
             </div>    
